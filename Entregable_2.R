@@ -1,3 +1,5 @@
+# El entregable 1 era un screenshot
+
 Enteros <- 1:10 
 Flotantes <- Enteros*0.1
 Booleanos <- (Enteros<5)
@@ -11,4 +13,4 @@ Operacion <- Logaritmo + Coseno
 
 BD02 <- data.frame(Enteros, Flotantes, Booleanos, Dias_Semana, Binarios, Estaciones, Logaritmo, Coseno, Exponencial, Operacion)
 
-BD02
+BD02 
