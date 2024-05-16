@@ -1,5 +1,5 @@
 # Cargar Base de datos y darle un vistazo
-
+library("ggplot2")
 load("BD_falanges.Rdat")
 View(BD_Falanges)
 str(BD_Falanges)
@@ -27,6 +27,7 @@ abline(v = mean(BD_Falanges$mm), col = "green", lwd = 2)
 
 
 men_pro <- BD_Falanges$mm[BD_Falanges$DEDO == "men" & BD_Falanges$FALANGE == "pro"]
+
 ic95_men_pro <- t.test(men_pro)
 int_ic95_men_pro <- (ic95_men_pro$conf.int[2]-ic95_men_pro$conf.int[1])/2
 int_ic95_men_pro
@@ -37,11 +38,15 @@ pul_dis <- subset(BD_Falanges, DEDO == "pul" & FALANGES == "dis")
 pul_med <- subset(BD_Falanges, DEDO == "pul" & FALANGES == "med")
 t.test (pul_pro$mm, pul_dis$mm)
 
-
+str(pul_pro)
+str(pul_dis)
+str(pul_med)
 library(psych)
 describe(BD_Falanges)
 
 # Inspección de datos
+pul_pro <- subset(BD_Falanges, DEDO == "pul" & FALANGES == "pro")
+pul_dis <- subset(BD_Falanges, DEDO == "pul" & FALANGES == "dis")
 ind_pro <- subset(BD_Falanges, DEDO == "ind" & FALANGES == "pro")
 ind_dis <- subset(BD_Falanges, DEDO == "ind" & FALANGES == "dis")
 ind_med <- subset(BD_Falanges, DEDO == "ind" & FALANGES == "med")
@@ -84,3 +89,266 @@ print(Frecuencias_Dedo)
 
 # Resúmenes numéricos y gráficos
 # Sección del entregable
+# Parte 1 IC95
+
+ic95_pul_pro <- t.test(pul_pro$mm)
+int_ic95_pul_pro <- (ic95_pul_pro$conf.int[2]-ic95_pul_pro$conf.int[1])/2
+int_ic95_pul_pro
+
+ic95_pul_dis <- t.test(pul_dis$mm)
+int_ic95_pul_dis <- (ic95_pul_dis$conf.int[2]-ic95_pul_dis$conf.int[1])/2
+int_ic95_pul_dis
+
+ic95_ind_pro <- t.test(ind_pro$mm)
+int_ic95_ind_pro <- (ic95_ind_pro$conf.int[2]-ic95_ind_pro$conf.int[1])/2
+int_ic95_ind_pro
+
+ic95_ind_med <- t.test(ind_med$mm)
+int_ic95_ind_med <- (ic95_ind_med$conf.int[2]-ic95_ind_med$conf.int[1])/2
+int_ic95_ind_med
+
+ic95_ind_dis <- t.test(ind_dis$mm)
+int_ic95_ind_dis <- (ic95_ind_dis$conf.int[2]-ic95_ind_dis$conf.int[1])/2
+int_ic95_ind_dis
+
+ic95_med_pro <- t.test(med_pro$mm)
+int_ic95_med_pro <- (ic95_med_pro$conf.int[2]-ic95_med_pro$conf.int[1])/2
+int_ic95_med_pro
+
+ic95_med_med <- t.test(med_med$mm)
+int_ic95_med_med <- (ic95_med_med$conf.int[2]-ic95_med_med$conf.int[1])/2
+int_ic95_med_med
+
+ic95_med_dis <- t.test(med_dis$mm)
+int_ic95_med_dis <- (ic95_med_dis$conf.int[2]-ic95_med_dis$conf.int[1])/2
+int_ic95_med_dis
+
+ic95_anu_pro <- t.test(anu_pro$mm)
+int_ic95_anu_pro <- (ic95_anu_pro$conf.int[2]-ic95_anu_pro$conf.int[1])/2
+int_ic95_anu_pro
+
+ic95_anu_med <- t.test(anu_med$mm)
+int_ic95_anu_med <- (ic95_anu_med$conf.int[2]-ic95_anu_med$conf.int[1])/2
+int_ic95_anu_med
+
+ic95_anu_dis <- t.test(anu_dis$mm)
+int_ic95_anu_dis <- (ic95_anu_dis$conf.int[2]-ic95_anu_dis$conf.int[1])/2
+int_ic95_anu_dis
+
+ic95_men_pro <- t.test(men_pro$mm)
+int_ic95_men_pro <- (ic95_men_pro$conf.int[2]-ic95_men_pro$conf.int[1])/2
+int_ic95_men_pro
+
+ic95_men_med <- t.test(men_med$mm)
+int_ic95_med_med <- (ic95_men_med$conf.int[2]-ic95_men_med$conf.int[1])/2
+int_ic95_med_med
+
+ic95_men_dis <- t.test(men_dis$mm)
+int_ic95_men_dis <- (ic95_men_dis$conf.int[2]-ic95_men_dis$conf.int[1])/2
+int_ic95_men_dis
+
+media_pul_pro <- mean(pul_pro$mm)
+media_pul_dis <- mean(pul_dis$mm)
+media_ind_pro <- mean(ind_pro$mm)
+media_ind_med <- mean(ind_med$mm)
+media_ind_dis <- mean(ind_dis$mm)
+media_med_pro <- mean(med_pro$mm)
+media_med_dis <- mean(med_dis$mm)
+media_med_med <- mean(med_med$mm)
+media_anu_pro <- mean(anu_pro$mm)
+media_anu_dis <- mean(anu_dis$mm)
+media_anu_med <- mean(anu_med$mm)
+media_men_pro <- mean(men_pro$mm)
+media_men_dis <- mean(men_dis$mm)
+media_men_med <- mean(men_med$mm)
+
+# Crear la gráfica de barras
+barplot(media, ylim = c(media - intervalo_confianza, media + intervalo_confianza), 
+        main = "Media con Intervalo de Confianza del 95%", 
+        ylab = "Media", names.arg = "", col = "lightblue")
+arrows(x0 = 1, y0 = media - intervalo_confianza, x1 = 1, y1 = media + intervalo_confianza, 
+       code = 3, angle = 90, length = 0.1, col = "blue")
+
+round(mean(pul_pro$mm), 2)
+round(mean(pul_dis$mm), 2)
+round(mean(ind_pro$mm), 2)
+round(mean(ind_dis$mm), 2)
+round(mean(ind_med$mm), 2)
+round(mean(med_pro$mm), 2)
+round(mean(med_dis$mm), 2)
+round(mean(med_med$mm), 2)
+round(mean(anu_pro$mm), 2)
+round(mean(anu_dis$mm), 2)
+round(mean(anu_med$mm), 2)
+round(mean(men_pro$mm), 2)
+round(mean(men_dis$mm), 2)
+round(mean(men_med$mm), 2)
+
+# Parte 2 t test entre datos
+
+t.test (ind_pro$mm, anu_pro$mm)
+
+t.test (ind_dis$mm, anu_dis$mm)
+
+t.test (ind_med$mm, anu_med$mm)
+
+t.test (men_dis$mm, med_dis$mm)
+
+t.test (men_pro$mm, med_pro$mm)
+
+# Graficas IC50
+
+ggplot()
+
+
+identificacion = c("pul_pro", "pul_dis", "ind_pro", "ind_dis", "ind_med", "med_pro", "med_dis", "med_med", "anu_pro", "anu_dis", "anu_med", "men_pro", "men_dis", "men_med")
+media = c(media_pul_pro,
+  media_pul_dis,
+  media_ind_pro,
+  media_ind_med,
+  media_ind_dis,
+  media_med_pro,
+  media_med_dis,
+  media_med_med,
+  media_anu_pro,
+  media_anu_dis,
+  media_anu_med,
+  media_men_pro,
+  media_men_dis,
+  media_men_med
+)
+
+Intervalo_bajo = c(
+  ic95_pul_pro$conf.int[1],
+  ic95_pul_dis$conf.int[1],
+  ic95_ind_pro$conf.int[1],
+  ic95_ind_med$conf.int[1],
+  ic95_ind_dis$conf.int[1],
+  ic95_med_pro$conf.int[1],
+  ic95_med_dis$conf.int[1],
+  ic95_med_med$conf.int[1],
+  ic95_anu_pro$conf.int[1],
+  ic95_anu_dis$conf.int[1],
+  ic95_anu_med$conf.int[1],
+  ic95_men_pro$conf.int[1],
+  ic95_men_dis$conf.int[1],
+  ic95_men_med$conf.int[1]
+)
+
+Intervalo_alto = c(
+  ic95_pul_pro$conf.int[2],
+  ic95_pul_dis$conf.int[2],
+  ic95_ind_pro$conf.int[2],
+  ic95_ind_med$conf.int[2],
+  ic95_ind_dis$conf.int[2],
+  ic95_med_pro$conf.int[2],
+  ic95_med_dis$conf.int[2],
+  ic95_med_med$conf.int[2],
+  ic95_anu_pro$conf.int[2],
+  ic95_anu_dis$conf.int[2],
+  ic95_anu_med$conf.int[2],
+  ic95_men_pro$conf.int[2],
+  ic95_men_dis$conf.int[2],
+  ic95_men_med$conf.int[2]
+)
+
+Datos_ic95_grafica <- data.frame(identificacion, media, Intervalo_bajo, Intervalo_alto)
+
+ggplot(Datos_ic95_grafica, aes(y = reorder(identificacion, -media), x = media)) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = Intervalo_bajo, xmax = Intervalo_alto )) +
+  geom_vline(xintercept = mean(BD_Falanges$mm), linetype = "dotted", color = "red") +
+  annotate("text", x= mean(BD_Falanges$mm)-0.5, y= 13, label="Media Falanges", angle=90) +
+  xlab("ic95") + ylab("Dedo_Falange") +
+  labs(title = "Media e intervalo de confianza 95% de falanges", caption = "Realizado por: Angel Martinez")
+
+
+# Graficas de histograma
+  
+
+dens_ind_pro <- density(ind_pro$mm)
+dens_anu_pro <- density(anu_pro$mm)
+
+plot(dens_ind_pro, main = "Gráfico de densidad de las falanges del índice proximal contra anular proximal", col = "firebrick4", lwd = 2, ylab = "Densidad", sub = "Realizado por: Angel Martínez")
+lines(dens_anu_pro, lty = 4  , lwd = 2, col = "darkblue")
+
+legend("topleft", c("Índice proximal", "Anular proximal"),
+       text.col = c("firebrick4", "darkblue"), bty = n)
+
+
+dens_ind_dis <- density(ind_dis$mm)
+dens_anu_dis <- density(anu_dis$mm)
+
+plot(dens_ind_dis, main = "Gráfico de densidad de las falanges del índice distal contra anular distal", col = "firebrick4", lwd = 2, ylab = "Densidad", sub = "Realizado por: Angel Martínez")
+lines(dens_anu_dis, lty = 4  , lwd = 2, col = "darkblue")
+
+legend("topleft", c("Índice distal", "Anular distal"),
+       text.col = c("firebrick4", "darkblue"), bty = n)
+
+
+dens_ind_med <- density(ind_med$mm)
+dens_anu_med <- density(anu_med$mm)
+
+plot(dens_ind_med, main = "Gráfico de densidad de las falanges del índice medio contra anular medio", col = "firebrick4", lwd = 2, ylab = "Densidad" , sub = "Realizado por: Angel Martínez")
+lines(dens_anu_med, lty = 4  , lwd = 2, col = "darkblue")
+
+legend("topleft", c("Índice medio", "Anular medio"),
+       text.col = c("firebrick4", "darkblue"), bty = n)
+
+
+dens_men_pro <- density(men_pro$mm)
+dens_med_pro <- density(med_pro$mm)
+
+plot(dens_men_pro, main = "Gráfico de densidad de las falanges del meñique proximal contra medio proximal", col = "firebrick4", lwd = 2, ylab = "Densidad", sub = "Realizado por: Angel Martínez")
+lines(dens_med_pro, lty = 4  , lwd = 2, col = "darkblue")
+
+legend("topleft", c("Meñique proximal", "Medio proximal"),
+       text.col = c("firebrick4", "darkblue"), bty = n)
+
+
+dens_men_dis <- density(men_dis$mm)
+dens_med_dis <- density(med_dis$mm)
+
+plot(dens_men_dis, main = "Gráfico de densidad de las falanges del meñique distal contra medio distal", col = "firebrick4", lwd = 2, ylab = "Densidad", sub = "Realizado por: Angel Martínez")
+lines(dens_med_dis, lty = 4  , lwd = 2, col = "darkblue")
+
+legend("topleft", c("Meñique distal", "Medio distal"),
+       text.col = c("firebrick4", "darkblue"), bty = n)
+
+# Graficas de boxplot
+
+boxplot(ind_pro$mm, anu_pro$mm, 
+        names = c("Índice proximal", "Anular proximal"),
+        main = "Gráfico de cajas de las falanges del índice proximal contra anu proximal", 
+        ylab = "milimetros", 
+        col = c("firebrick", "cyan"),
+        sub = "Realizado por: Angel Martínez")
+
+boxplot(ind_dis$mm, anu_dis$mm, 
+        names = c("Índice distal", "Anular distal"),
+        main = "Gráfico de cajas de las falanges del índice distal contra anu distal", 
+        ylab = "milimetros", 
+        col = c("firebrick", "cyan"),
+        sub = "Realizado por: Angel Martínez")
+
+boxplot(ind_med$mm, anu_med$mm, 
+        names = c("Índice medio", "Anular medio"),
+        main = "Gráfico de cajas de las falanges del índice medio contra anu medio", 
+        ylab = "milimetros", 
+        col = c("firebrick", "cyan"),
+        sub = "Realizado por: Angel Martínez")
+
+boxplot(men_pro$mm, med_pro$mm, 
+        names = c("Meñique proximal", "Medio proximal"),
+        main = "Gráfico de cajas de las falanges del meñique proximal contra medio proximal", 
+        ylab = "milimetros", 
+        col = c("firebrick", "cyan"),
+        sub = "Realizado por: Angel Martínez")
+
+boxplot(men_dis$mm, med_dis$mm, 
+        names = c("Meñique distal", "Medio distal"),
+        main = "Gráfico de cajas de las falanges del meñique distal contra medio distal", 
+        ylab = "milimetros", 
+        col = c("firebrick", "cyan"),
+        sub = "Realizado por: Angel Martínez")
+
