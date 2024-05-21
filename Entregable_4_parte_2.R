@@ -19,7 +19,7 @@ subset(BD_Falanges, DEDO == "ind" & FALANGES == "dis" & MANO == "izq")
 # Aplicación de funciones
 
 dens_mm <- density(BD_Falanges$mm)
-hist(BD_Falanges$mm, freq = FALSE, ylim = c(0,0.075),main = "Histograma de frecuencias relativas de la longitud de falanges", col = "lightblue", border="white", xlab = "Milimetros", ylab = "Densidad")
+hist(BD_Falanges$mm, freq = FALSE, ylim = c(0,0.075),main = "Histograma de frecuencias relativas de la longitud de falanges", col = "lightblue", border="white", xlab = "Milimetros", ylab = "Densidad", sub = "Realizado por Angel Martínez")
 lines(dens_mm, lty = 2, col = "blue", lwd = 2)
 rug(BD_Falanges$mm, col = "red")
 
@@ -162,12 +162,7 @@ media_men_pro <- mean(men_pro$mm)
 media_men_dis <- mean(men_dis$mm)
 media_men_med <- mean(men_med$mm)
 
-# Crear la gráfica de barras
-barplot(media, ylim = c(media - intervalo_confianza, media + intervalo_confianza), 
-        main = "Media con Intervalo de Confianza del 95%", 
-        ylab = "Media", names.arg = "", col = "lightblue")
-arrows(x0 = 1, y0 = media - intervalo_confianza, x1 = 1, y1 = media + intervalo_confianza, 
-       code = 3, angle = 90, length = 0.1, col = "blue")
+
 
 round(mean(pul_pro$mm), 2)
 round(mean(pul_dis$mm), 2)
@@ -273,7 +268,13 @@ plot(dens_ind_pro, main = "Gráfico de densidad de las falanges del índice prox
 lines(dens_anu_pro, lty = 4  , lwd = 2, col = "darkblue")
 
 legend("topleft", c("Índice proximal", "Anular proximal"),
-       text.col = c("firebrick4", "darkblue"), bty = n)
+       lty = c(1, 4),
+       col = c("firebrick4", "darkblue"),
+       text.col =  c("firebrick4", "darkblue"),
+       bty = "n",
+       title = "Funciones",
+       title.col = "black"
+       )
 
 
 dens_ind_dis <- density(ind_dis$mm)
@@ -283,7 +284,13 @@ plot(dens_ind_dis, main = "Gráfico de densidad de las falanges del índice dist
 lines(dens_anu_dis, lty = 4  , lwd = 2, col = "darkblue")
 
 legend("topleft", c("Índice distal", "Anular distal"),
-       text.col = c("firebrick4", "darkblue"), bty = n)
+       lty = c(1, 4),
+       col = c("firebrick4", "darkblue"),
+       text.col =  c("firebrick4", "darkblue"),
+       bty = "n",
+       title = "Funciones",
+       title.col = "black"
+)
 
 
 dens_ind_med <- density(ind_med$mm)
@@ -293,8 +300,13 @@ plot(dens_ind_med, main = "Gráfico de densidad de las falanges del índice medi
 lines(dens_anu_med, lty = 4  , lwd = 2, col = "darkblue")
 
 legend("topleft", c("Índice medio", "Anular medio"),
-       text.col = c("firebrick4", "darkblue"), bty = n)
-
+       lty = c(1, 4),
+       col = c("firebrick4", "darkblue"),
+       text.col =  c("firebrick4", "darkblue"),
+       bty = "n",
+       title = "Funciones",
+       title.col = "black"
+)
 
 dens_men_pro <- density(men_pro$mm)
 dens_med_pro <- density(med_pro$mm)
@@ -303,7 +315,13 @@ plot(dens_men_pro, main = "Gráfico de densidad de las falanges del meñique pro
 lines(dens_med_pro, lty = 4  , lwd = 2, col = "darkblue")
 
 legend("topleft", c("Meñique proximal", "Medio proximal"),
-       text.col = c("firebrick4", "darkblue"), bty = n)
+       lty = c(1, 4),
+       col = c("firebrick4", "darkblue"),
+       text.col =  c("firebrick4", "darkblue"),
+       bty = "n",
+       title = "Funciones",
+       title.col = "black"
+)
 
 
 dens_men_dis <- density(men_dis$mm)
@@ -313,41 +331,47 @@ plot(dens_men_dis, main = "Gráfico de densidad de las falanges del meñique dis
 lines(dens_med_dis, lty = 4  , lwd = 2, col = "darkblue")
 
 legend("topleft", c("Meñique distal", "Medio distal"),
-       text.col = c("firebrick4", "darkblue"), bty = n)
+       lty = c(1, 4),
+       col = c("firebrick4", "darkblue"),
+       text.col =  c("firebrick4", "darkblue"),
+       bty = "n",
+       title = "Funciones",
+       title.col = "black"
+)
 
 # Graficas de boxplot
 
 boxplot(ind_pro$mm, anu_pro$mm, 
         names = c("Índice proximal", "Anular proximal"),
-        main = "Gráfico de cajas de las falanges del índice proximal contra anu proximal", 
+        main = c("Gráfico de cajas de las falanges", "del índice proximal contra anular proximal"), 
         ylab = "milimetros", 
         col = c("firebrick", "cyan"),
         sub = "Realizado por: Angel Martínez")
 
 boxplot(ind_dis$mm, anu_dis$mm, 
         names = c("Índice distal", "Anular distal"),
-        main = "Gráfico de cajas de las falanges del índice distal contra anu distal", 
+        main = c("Gráfico de cajas de las falanges", "del índice distal contra anular distal"), 
         ylab = "milimetros", 
         col = c("firebrick", "cyan"),
         sub = "Realizado por: Angel Martínez")
 
 boxplot(ind_med$mm, anu_med$mm, 
         names = c("Índice medio", "Anular medio"),
-        main = "Gráfico de cajas de las falanges del índice medio contra anu medio", 
+        main = c("Gráfico de cajas de las falanges", "del índice medio contra anular medio"), 
         ylab = "milimetros", 
         col = c("firebrick", "cyan"),
         sub = "Realizado por: Angel Martínez")
 
 boxplot(men_pro$mm, med_pro$mm, 
         names = c("Meñique proximal", "Medio proximal"),
-        main = "Gráfico de cajas de las falanges del meñique proximal contra medio proximal", 
+        main = c("Gráfico de cajas de las falanges", "del meñique proximal contra medio proximal"), 
         ylab = "milimetros", 
         col = c("firebrick", "cyan"),
         sub = "Realizado por: Angel Martínez")
 
 boxplot(men_dis$mm, med_dis$mm, 
         names = c("Meñique distal", "Medio distal"),
-        main = "Gráfico de cajas de las falanges del meñique distal contra medio distal", 
+        main = c("Gráfico de cajas de las falanges", "del meñique distal contra medio distal"), 
         ylab = "milimetros", 
         col = c("firebrick", "cyan"),
         sub = "Realizado por: Angel Martínez")

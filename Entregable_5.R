@@ -54,4 +54,13 @@ ic_95_n1000
 cuadro_ic95 <- data.frame("N"= c(10, 50, 100, 500, 1000), "Amplitud"= c(ic_95_n10, ic_95_n50, ic_95_n100, ic_95_n500, ic_95_n1000))
 cuadro_ic95
 
-plot(cuadro_ic95$N, cuadro_ic95$Amplitud, type="b")
+plot(cuadro_ic95$N, cuadro_ic95$Amplitud, 
+     main = "Efecto de N en la amplitud del intervalo de confianza", 
+     type="b", 
+     xlab = "Número de observaciones",
+     ylab = "Amplitud del IC95",
+     col = "red3",
+     lty = 4, 
+     lwd = 2,
+     sub = "Realizado por: Angel Martínez"
+)
