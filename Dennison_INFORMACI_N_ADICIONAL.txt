@@ -1,0 +1,35 @@
+This Dennison file has the variables used in the text 
+	as well as some additional ones that may be
+	used to analyze other research questions
+
+Variables
+
+age		age of child
+weight		weight 
+height		height
+juice		ounces of juice per day
+milk		ounces of milk per day
+soda		ounces of soda per day
+otherbev	ounces of other beverages per day
+energy		daily energy intake	
+protein		daily protein intake
+carbohyd	daily carbohydrate intake 
+totalfat	daily fat intake 
+satfat		daily saturated fat intake 
+cholest		cholesterol level
+expheigh	expected height
+gender		gender of child
+age2_5		age in two categories
+renergy 	rank of energy-across groups
+rank2_5		rank of energy-within groups
+rank_mn 	2-year energy rank minus mean rank
+rankmnsq 	2-year rank-squared
+bmi		body mass index
+
+Value Codes
+
+gender		1 = female, 0 = male
+age 2_5		2 = 2 years old, 5 = 5 years old
+
+
+
