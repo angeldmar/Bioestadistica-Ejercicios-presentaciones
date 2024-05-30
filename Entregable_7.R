@@ -54,4 +54,30 @@ R2BMIFAT
 # 5. ¿Existe evidencia gráfica de relación entre las
 # variables (BMI Kg/m2) y (%Fat)?
 
-# A graficar. 
+# A graficar
+
+Fat <- NeidertBD$`% Fat`
+BMI <- NeidertBD$`BMI (kg/m2)`
+lmNeidert <- lm(Fat ~ BMI)
+
+plot(Fat ~ BMI, 
+     data = NeidertBD,
+     pch = ifelse(NeidertBD$Sex == "M", 16, 17),
+     col = ifelse(NeidertBD$Sex == "M", "cornflowerblue","orangered"),
+     main = "Relación entre variables",
+     xlab = "IMC",
+     ylab = "% Grasa",
+     sub = "Elaborado por Angel Martínez")
+abline(lmNeidert, 
+       col = "grey66",
+       lty = 1,
+       lwd = 2)
+
+legend("bottomright", 
+       legend = c("Regresion", "Hombre", "Mujer"), 
+       col = c("grey66", "cornflowerblue","orangered"),
+       lty = c(1, NA, NA),
+       lwd = 2,
+       pch = c(NA, 16, 17))
+
+
