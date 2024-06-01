@@ -1,20 +1,22 @@
 library(readr)
-NeidertBD <- read_csv("Kluess-plasma DPPIV-data.csv")
+NeidertBD<- read_csv("Kluess-plasma DPPIV-data.csv")
 View(NeidertBD)
 
 # Preguntas de investigación
 
 # 1. Existe correlación entre (BMI Kg/m2) y (%Fat)?
-# Aplique la prueba t para correlación aplicando la
-# función cor.test() y haga la prueba de hipótesis:
 
 
 str(NeidertBD)
 NeidertBD$Sex <- as.factor(NeidertBD$Sex)
+# F =  1
+# M = 2
 
 CorBMIFAT <- cor(NeidertBD$`BMI (kg/m2)`, NeidertBD$`% Fat`)
 CorBMIFAT
 
+# Si, R > 0
+Backsticks
 # 0.4210956
 # correlacion moderada
 
@@ -36,16 +38,28 @@ R2BMIFAT
 #(BMI Kg/m2) y el % de grasa (%Fat) es estadísticamente
 # significativa?
 
+
 CorBMIFATtest <- cor.test(NeidertBD$`BMI (kg/m2)`, NeidertBD$`% Fat`)
 CorBMIFATtest 
 # valor p = 4.181e-06
 # 95 percent confidence interval:
 # 0.2546933 0.5632773
-# La correlacion es sestadisticamente significativa
+# La correlacion es estadisticamente significativa
+
+# p < 0.05
+
 
 
 
 # 4. ¿Cuál es el IC95 de la correlación entre (BMI Kg/m2) y (%Fat)?
+
+
+
+IC95BMIFAT <- (CorBMIFATtest$conf.int[2] - CorBMIFATtest $conf.int[1])/2
+IC95BMIFAT
+
+# 0.4210956 ± 0.154292
+
 
 # 95 percent confidence interval:
 # 0.2546933 0.5632773
