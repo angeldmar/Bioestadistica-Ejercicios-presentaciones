@@ -16,7 +16,7 @@ CorBMIFAT <- cor(NeidertBD$`BMI (kg/m2)`, NeidertBD$`% Fat`)
 CorBMIFAT
 
 # Si, R > 0
-Backsticks
+
 # 0.4210956
 # correlacion moderada
 
@@ -47,9 +47,6 @@ CorBMIFATtest
 # La correlacion es estadisticamente significativa
 
 # p < 0.05
-
-
-
 
 # 4. ¿Cuál es el IC95 de la correlación entre (BMI Kg/m2) y (%Fat)?
 
@@ -108,7 +105,10 @@ abline(lmNeidertFemale,
        lwd = 1)
 
 
-legend("topleft", 
+legend("topleft",
+       inset = c(0, -0.05),
+       xpd = TRUE,
+       ncol = 5,
        legend = c("Modelo lineal general", "Modelo lineal hombres", "Modelo lineal mujeres", "Hombres", "Mujeres"), 
        col = c("grey66", "cornflowerblue","orangered", "cornflowerblue","orangered"),
        text.col = c("grey66", "cornflowerblue","orangered", "cornflowerblue","orangered"),
