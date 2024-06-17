@@ -18,6 +18,7 @@ StromBD$Psychotherapy <- as.factor(StromBD$Psychotherapy)
 # Tabla de contigencia
 tablaContigenciaSexo <- xtabs(~Sex, data = StromBD)
 tablaContigenciaSexo
+addmargins(tablaContigenciaSexo)
 
 # Proporciones
 proporcionesSexo <- proportions(tablaContigenciaSexo)
@@ -33,6 +34,12 @@ testProporcionesSexo02 <- prop.test(40, 48)
 testProporcionesSexo01
 testProporcionesSexo02
 
+test1 <- prop.test(4,24)
+test2 <- prop.test(20,24)
+test1
+test2
+(test1$conf.int[2]-test1$conf.int[1])/2
+(test2$conf.int[2]-test2$conf.int[1])/2
 # Evalua si existe una diferencia en la proporcion esperada
 # Hipotesis nula las proporciones entre los dos grupos no son diferentes  p >=0.05
 # Hipotesis alternativa  las proporciones entre dos grupos son diferentes p < 0.05
@@ -56,6 +63,7 @@ IC95ProporcionesSexo02
 
 tablaContigenciaSexoGrupo <- xtabs(~Sex + Group, data = StromBD) 
 tablaContigenciaSexoGrupo
+addmargins(tablaContigenciaSexoGrupo)
 
 testProporcionesSexoGrupo <- prop.test(tablaContigenciaSexoGrupo)
 testProporcionesSexoGrupo
@@ -65,7 +73,7 @@ IC95ProporcionesSexoGrupo <- (testProporcionesSexoGrupo$conf.int[2]-testProporci
 IC95ProporcionesSexoGrupo
 
 plot(tablaContigenciaSexoGrupo,
-     main = "Composición de la muestra",
+     main = "Composición de Sexo contra Grupo",
      ylab = "Grupo",
      xlab = "Sexo",
      col = c("#109EFB", "#D98880"),
@@ -96,19 +104,57 @@ chisqTestSexoGrupo
 
 tablaContigenciaSexoEducacion <- xtabs(~Sex + Education, data = StromBD)
 tablaContigenciaSexoEducacion
+addmargins(tablaContigenciaSexoEducacion)
 chisqTestSexoEducacion <- chisq.test(tablaContigenciaSexoEducacion)
 chisqTestSexoEducacion
 # Si es  independiente
 
 tablaContigenciaSexoMedicacion <- xtabs(~Sex + Medication, data = StromBD)
 tablaContigenciaSexoMedicacion
+addmargins(tablaContigenciaSexoMedicacion)
 chisqTestSexoMedicacion <- chisq.test(tablaContigenciaSexoMedicacion)
 chisqTestSexoMedicacion
 # Si es independiente
 tablaContigenciaSexoPsicoterapia <- xtabs(~Sex + Psychotherapy, data = StromBD)
 tablaContigenciaSexoPsicoterapia
+addmargins(tablaContigenciaSexoPsicoterapia)
 chisqTestSexoPsicoterapia <- chisq.test(tablaContigenciaSexoPsicoterapia)
 chisqTestSexoPsicoterapia
+
+
+
+plot(tablaContigenciaSexoEducacion,
+     main = "Composición de Sexo contra Educación",
+     ylab = "Educación",
+     xlab = "Sexo",
+     col = c("darkmagenta", "tan4"),
+     sub = "Realizado por Angel Martínez"
+)
+
+  plot(tablaContigenciaSexoMedicacion,
+       main = "Composición Sexo contra Medicación",
+       ylab = "Medicación",
+       xlab = "Sexo",
+       col = c("navyblue", "tomato"),
+       sub = "Realizado por Angel Martínez"
+  )
+
+plot(tablaContigenciaSexoPsicoterapia,
+     main = "Composición de Sexo contra Psicoterapia",
+     ylab = "Psicoterapia",
+     xlab = "Sexo",
+     col = c("dodgerblue4", "chocolate"),
+     sub = "Realizado por Angel Martínez"
+)
+
+plot(tablaContigenciaSexoEstadoCivil,
+     main = "Composición de Sexo Contra EstadoCivil",
+     ylab = "Estado Civil",
+     xlab = "Sexo",
+     col = c("mediumpurple4", "sandybrown"),
+     sub = "Realizado por Angel Martínez"
+)
+
 
 # Si es independiente
 # p >= 0.05
@@ -118,9 +164,9 @@ chisqTestSexoPsicoterapia
 
 #Cambio en el tono de la pregunta mismo metodo. 
 
-
 tablaContigenciaSexoEstadoCivil <- xtabs(~Sex + Marital_status, data = StromBD)
 tablaContigenciaSexoEstadoCivil
+addmargins(tablaContigenciaSexoEstadoCivil)
 chisqTestSexoEstadoCivil <- chisq.test(tablaContigenciaSexoEstadoCivil)
 chisqTestSexoEstadoCivil
 # Si es independiente

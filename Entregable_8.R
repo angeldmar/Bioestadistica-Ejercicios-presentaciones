@@ -14,8 +14,6 @@ NeidertBD$Sex <- as.factor(NeidertBD$Sex)
 
 # Funciones son palabras reservados
 
-as.factor
-
 # Preguntas de Investigacion
 
 # 1. Sabiendo que existe correlación entre el índice de masa corporal 
@@ -38,11 +36,11 @@ as.factor
 # 
 # La pendiente del imc es significativo (p < 0.001)
 # 
-# IMC <- NeidertBD$`BMI (kg/m2)`
-# FAT <- NeidertBD$`% Fat`
+IMC <- NeidertBD$`BMI (kg/m2)`
+FAT <- NeidertBD$`% Fat`
 
-lmNeidert <- lm(NeidertBD$`% Fat` ~ NeidertBD$`BMI (kg/m2)`, data = NeidertBD)
-lmNeidert <- lm(`% Fat` ~ `BMI (kg/m2)`, data = NeidertBD)
+# lmNeidert <- lm(NeidertBD$`% Fat` ~ NeidertBD$`BMI (kg/m2)`, data = NeidertBD)
+# lmNeidert <- lm(`% Fat` ~ `BMI (kg/m2)`, data = NeidertBD)
 lmNeidert <- lm(FAT~IMC, data= NeidertBD)
 
 summary(lmNeidert)
