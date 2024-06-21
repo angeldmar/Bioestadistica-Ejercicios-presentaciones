@@ -59,17 +59,18 @@ tTestOceanMortalityMelanoma # Hay diferencia significativa
 # entre los estados oceanicos y no oceanicos
 
 mean(oceanUSmelanoma$mortality)
-tTestOzJuiceBoys <- t.test(oceanUSmelanoma$mortality)
-tTestOzJuiceBoys
-IC95OzJuiceBoys <- (tTestOzJuiceBoys$conf.int[2]-tTestOzJuiceBoys$conf.int[1])/2
+tTestOceanUSMelanoma <- t.test(oceanUSmelanoma$mortality)
+tTestOceanUSMelanoma
+IC95OceanUSMelanoma <- (tTestOceanUSMelanoma$conf.int[2]-tTestOceanUSMelanoma$conf.int[1])/2
+
+
 mean(notOceanUSmelanoma$mortality)
+tTestNotOceanUSMelanoma <- t.test(notOceanUSmelanoma$mortality)
+tTestNotOceanUSMelanoma
 
-tTestOzJuiceBoys2 <- t.test(notOceanUSmelanoma$mortality)
-tTestOzJuiceBoys2
-
-IC95OzJuiceBoys2 <- (tTestOzJuiceBoys2$conf.int[2]-tTestOzJuiceBoys2$conf.int[1])/2
-IC95OzJuiceBoys
-IC95OzJuiceBoys2 
+IC95NotOceanUSMelanoma <- (tTestNotOceanUSMelanoma$conf.int[2]-NotOceanUSMelanoma$conf.int[1])/2
+IC95OceanUSMelanoma
+IC95NotOceanUSMelanoma 
 
 # De hecho es mayor en los estados oceanicos.  
 
